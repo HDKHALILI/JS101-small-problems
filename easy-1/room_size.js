@@ -5,16 +5,24 @@
 // Do not worry about validating the input at this time. Use the
 // readlineSync.prompt method to collect user input.
 
+// Further Exploration
+// Modify the program so that it asks the user for the input type
+// (meters or feet). Compute for the area accordingly, and log it
+// and its conversion in parentheses.
+
 // Understanding the Problem:
 // Input:
 //  - string
-//  - length of room in meter
-//  - width of room in meter
+//  - length of room
+//  - width of room
+//  - unit:
+//    - meters
+//    - feet
 // Output:
 //  - string
 //  - area of room in
-//    - square meter
-//    - square feet
+//    - square meter (square feet)
+//    - square feet (square meter)
 // Rules:
 //  - area = length * width => square [unit]
 //  1 square meter = 10.7639 square feet
@@ -24,21 +32,29 @@
 // Input:
 //  - number
 //    - convert string to number
+//  - string
 // Output:
 //  - string
 
 // Algorithm:
 // - ask the user for the length of the room
-// - assign the user's response to a variable roomLength
+// - store the user's response in variable 'length'
 // - ask the user for the width of the room
-// - assign the user's response to a variable roomWidth
-// - calculate room area by multiplying roomLength value with roomWidth value
-// - assign the area to variable roomAreaInMeters
-// - convert room area to square feet by multiplying roomAreaInMetter value
-//   with 10.7639
-// - assign it to variable roomAreaInFeet
-// - log "The area of room is [roomAreaInMeter] square meters
-//   ([roomAreaInFeet])"
+// - store the user's response to variable 'width'
+// - ask the user to choose a meter or feet as unit
+// - store the user's response in variable 'unit'
+// - calculate room area by multiplying 'length' value with 'width' value
+// - store the area in variable 'area'
+// - if unit is meters
+// - convert area to square feet by multiplying 'area' value with 10.7639
+// - store it in variable 'areaInFeet'
+// - then log "The area of room is [area] square meters
+//   ([areaInFeet] square feet)"
+// - if unit is feet
+// - convert area to meters by dividing the 'area' value by 10.7639
+// - store it in 'areaInMeters'
+// - then log "The area of room is [area] square feet
+//   ([areaInMeter] square meter)"
 // NOTE:
 // - how many decimal?
 
@@ -49,17 +65,28 @@ function prompt(message) {
   console.log(`=> ${message}`);
 }
 
-prompt("Enter the length of the room in meters:");
-let length = readline.question("> ");
+prompt("Enter the length of the room:");
+let length = readline.prompt();
 length = Number(length);
 
-prompt("Enter the width of the room in meters:");
-let width = readline.question("> ");
+prompt("Enter the width of the room:");
+let width = readline.prompt();
 width = Number(width);
 
-let areaInMeters = (length * width).toFixed(2);
-let areaInFeets = (areaInMeters * SQFEET_IN_SQMETER).toFixed(2);
+prompt("Choose a unit [meter/feet]:");
+let unit = readline.prompt();
 
-prompt(
-  `The area of the room is ${areaInMeters} square meters (${areaInFeets} square feets).`
-);
+let area = (length * width).toFixed(2);
+area = Number(area);
+
+if (unit === "meter") {
+  let areaInFeets = (area * SQFEET_IN_SQMETER).toFixed(2);
+  prompt(
+    `The area of the room is ${area} square meters (${areaInFeets} square feets).`
+  );
+} else if (unit === "feet") {
+  let areaInMeters = (area / SQFEET_IN_SQMETER).toFixed(2);
+  prompt(
+    `The area of the room is ${area} square feet (${areaInMeters} square meters).`
+  );
+}
