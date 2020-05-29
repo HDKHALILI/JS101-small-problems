@@ -73,13 +73,13 @@ prompt("Enter the width of the room:");
 let width = readline.prompt();
 width = Number(width);
 
-prompt("Choose a unit [meter/feet]:");
+prompt("Choose a unit [meters/feet]:");
 let unit = readline.prompt();
 
 let area = (length * width).toFixed(2);
 area = Number(area);
 
-if (unit === "meter") {
+if (unit === "meters") {
   let areaInFeets = (area * SQFEET_IN_SQMETER).toFixed(2);
   prompt(
     `The area of the room is ${area} square meters (${areaInFeets} square feets).`
