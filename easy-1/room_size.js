@@ -12,7 +12,7 @@
 
 // Understanding the Problem:
 // Input:
-//  - string
+//  - number
 //  - length of room
 //  - width of room
 //  - unit:
