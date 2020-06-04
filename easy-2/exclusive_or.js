@@ -60,14 +60,18 @@ console.log(xor(true, true) === false);
     // value1 = true, value2 = false
     // true && !false(true) -> true, false && !true(false) -> false
     // true || false => true
-    if ((value1 && !value2) || (value2 && !value1)) {
-      return true;
-    }
-    return false;
+    // if ((value1 && !value2) || (value2 && !value1)) {
+    //   return true;
+    // }
+    // return false;
+
+    return (value1 && !value2) || (value2 && !value1);
   }
 
   console.log(xor(5, 0) === true);
   console.log(xor(false, true) === true);
   console.log(xor(1, 1) === false);
   console.log(xor(true, true) === false);
+  console.log(xor("hi", "hello"));
+  console.log(xor("hi", ""));
 }
