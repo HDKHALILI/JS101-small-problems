@@ -46,6 +46,7 @@ function stringToInteger(string) {
   let arrayOfDigits = string.split("").map(char => DEC_DIGITS[char]);
   let output = 0;
   arrayOfDigits.forEach(digit => {
+    // * 10 is because decimal is base 10
     output = (output * 10) + digit;
   });
   return output;
@@ -83,6 +84,7 @@ function hexadecimalToInteger(string) {
   let digits = string.split("").map(char => HEX_DIGITS[char.toLowerCase()]);
   let output = 0;
   digits.forEach((digit) => {
+    // * 16 -> hexadecimal is base 16
     output = (output * 16) + digit;
   });
 
