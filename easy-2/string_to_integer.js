@@ -28,8 +28,9 @@
 //  - number
 
 // Code:
+
 function stringToInteger(string) {
-  const DIGITS = {
+  const DEC_DIGITS = {
     0: 0,
     1: 1,
     2: 2,
@@ -42,7 +43,7 @@ function stringToInteger(string) {
     9: 9,
   };
 
-  let arrayOfDigits = string.split("").map(char => DIGITS[char]);
+  let arrayOfDigits = string.split("").map(char => DEC_DIGITS[char]);
   let output = 0;
   arrayOfDigits.forEach(digit => {
     output = (output * 10) + digit;
@@ -52,3 +53,41 @@ function stringToInteger(string) {
 
 console.log(stringToInteger("4321") === 4321); // logs true
 console.log(stringToInteger("570") === 570); // logs true
+
+// *** Further Exploration ***
+// Write a hexadecimalToInteger() function that converts a string representing
+// a hexadecimal number to its integer value. Note that hexadecimal number
+// use base 16 instead of 10, and the "digits" A, B, C, D, E, and F (and the
+// lowercase equivalents) correspond to decimal value of 10-15.
+
+const HEX_DIGITS = {
+  0: 0,
+  1: 1,
+  2: 2,
+  3: 3,
+  4: 4,
+  5: 5,
+  6: 6,
+  7: 7,
+  8: 8,
+  9: 9,
+  a: 10,
+  b: 11,
+  c: 12,
+  d: 13,
+  e: 14,
+  f: 15
+};
+function hexadecimalToInteger(string) {
+
+  let digits = string.split("").map(char => HEX_DIGITS[char.toLowerCase()]);
+  let output = 0;
+  digits.forEach((digit) => {
+    output = (output * 16) + digit;
+  });
+
+  return output;
+}
+
+console.log(hexadecimalToInteger('4D9f') === 19871);
+console.log(hexadecimalToInteger('4D9f'));
