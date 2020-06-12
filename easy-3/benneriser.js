@@ -63,6 +63,8 @@ function logInBox(message) {
 
 logInBox('hello world');
 
+// *** Further Exploration ***
+// 1.
 // Modify this function so that it truncates the message if it doesn't fit
 // inside a maximum width provided as a second argument (the width is the
 // width of the box itself). You may assume no maximum if the second argument
@@ -83,3 +85,87 @@ function logInBox2(message, size) {
 
 logInBox2('To boldly go where no one has gone before.');
 logInBox2('To boldly go where no one has gone before.', 30);
+
+// 2.
+// For a challenging but fun exercise, try word wrapping messages that
+// are too long to fit, so that they appear on multiple lines but are
+// still contained within the box. This isn't an easy problem, but
+// it's doable with basic JavaScript.
+
+// Algorithm:
+// - if size is given we set box length to size otherwise message's length
+// - split message into peices where each peice is as long as the given size
+//   - save each peice in an array
+// - log horizontal line
+// - log empty line
+// - loop over message peices
+//   - log it with necessory decoration
+// - log empt line
+// - log horizontal line
+
+// splitByLength
+// - create an result array
+// - split the text by space and assign it to array variable
+// - create an empty words array
+// - start a for loop that ends when index is equal to array.length
+//   - if joining words with space and adding the length of the current word
+//     to it is greater or equal to the given length
+//      - append words to result
+//      - set words to empty array
+//   - add current word to words array
+// - add words to result
+// - return result
+
+function splitByLength(text, length) {
+  let result = [];
+  let wordsArray = text.split(' ');
+  let currentWords = [];
+  for (let index = 0; index < wordsArray.length; index += 1) {
+    if ((currentWords.join(' ').length + wordsArray[index].length) >= length) {
+      result.push(currentWords);
+      currentWords = [];
+    }
+    currentWords.push(wordsArray[index]);
+  }
+
+  result.push(currentWords);
+
+  return result;
+}
+
+function longestWord(text) {
+  return text.split(' ').sort((a, b) => b.length - a.length)[0];
+}
+
+function logInBox3(message, size) {
+  if (size < longestWord(message).length) {
+    size = longestWord(message).length;
+  }
+  let length = size ? (size + 2) : (message.length + 2);
+  let messages = splitByLength(message, size);
+  let horizontalLine = `+${'-'.repeat(length)}+`;
+  let emptyLine = `|${' '.repeat(length)}|`;
+
+  console.log(horizontalLine);
+  console.log(emptyLine);
+
+  messages.forEach(message => {
+    console.log(`| ${message.join(' ').padEnd(size + 1, ' ')}|`);
+  });
+
+  console.log(emptyLine);
+  console.log(horizontalLine);
+
+}
+
+logInBox3(
+  "The most beautiful things in the world cannot be seen or even touched. They must be felt with the heart.", 5
+);
+
+logInBox3(
+  "You can't go back and change the beginning, but you can start where you are and change the ending.", 30
+);
+
+logInBox3(
+  "The best thing to hold onto in life is each other.", 24
+);
