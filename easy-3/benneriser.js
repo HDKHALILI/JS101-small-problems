@@ -62,3 +62,24 @@ function logInBox(message) {
 }
 
 logInBox('hello world');
+
+// Modify this function so that it truncates the message if it doesn't fit
+// inside a maximum width provided as a second argument (the width is the
+// width of the box itself). You may assume no maximum if the second argument
+// is omitted.
+
+function logInBox2(message, size) {
+  let boxLength = size ? (size + 2) : (message.length + 2);
+  let horizontalLine = `+${'-'.repeat(boxLength)}+`;
+  let emptyLine = `|${' '.repeat(boxLength)}|`;
+  let messageLine = `| ${message.slice(0, size)} |`;
+
+  console.log(horizontalLine);
+  console.log(emptyLine);
+  console.log(messageLine);
+  console.log(emptyLine);
+  console.log(horizontalLine);
+}
+
+logInBox2('To boldly go where no one has gone before.');
+logInBox2('To boldly go where no one has gone before.', 30);
