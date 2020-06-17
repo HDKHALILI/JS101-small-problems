@@ -51,3 +51,9 @@ function findFibonacciIndexByLength(length) {
 console.log(findFibonacciIndexByLength(2));       // 7
 console.log(findFibonacciIndexByLength(10));      // 45
 console.log(findFibonacciIndexByLength(16));      // 74
+console.log(findFibonacciIndexByLength(30));      // 74
+
+// *** Further Exploration ***
+// Add some error handling to your program to issue an error message when
+// the computed result stops changing. Base your solution on the computed
+// values, not the number 16.
