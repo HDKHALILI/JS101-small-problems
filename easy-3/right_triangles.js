@@ -42,11 +42,11 @@ triangle(9);
 // - end loop
 
 // Code:
-function triangle(n) {
-  let output = '';
-  for (let counter = 1; counter <= n; counter += 1) {
-    output += '*';
-    console.log(output.padStart(n, ' '));
+function triangle(height) {
+  let stars = '';
+  for (let counter = 1; counter <= height; counter += 1) {
+    stars += '*';
+    console.log(stars.padStart(height, ' '));
   }
 }
 
