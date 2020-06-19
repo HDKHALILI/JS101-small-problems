@@ -64,3 +64,20 @@ if (numbers.includes(last)) {
 } else {
   console.log(`The number ${last} doesn't appears in ${numbers}.`);
 }
+
+// *** Further Exploration ***
+
+// What if the problem was looking for a number that satisfies some condition
+// (e.g., a number greater than 25), instead of a specific number? Would the
+// current solution still work? Why or why not? Think about this first before
+// scrolling down.
+
+if (numbers.some(num => num > last)) {
+  console.log(
+    `The number ${last} is less than some of these (${numbers}) numbers.`
+  );
+} else {
+  console.log(
+    `The number ${last} is not less than any of these (${numbers}) numbers.`
+  );
+}
