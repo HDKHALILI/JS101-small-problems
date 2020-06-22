@@ -19,3 +19,18 @@ function interleave(array1, array2) {
 }
 
 console.log(interleave([1, 2, 3], ['a', 'b', 'c']));    // [1, "a", 2, "b", 3, "c"]
+
+// *** Further Exploration ***
+// Try to solve this problem using `Array.prototype.forEach` method
+
+function interleave2(array1, array2) {
+  let result = [];
+  array1.forEach((item, index) => {
+    result.push(item, array2[index]);
+  });
+
+  return result;
+}
+
+console.log('with forEach');
+console.log(interleave2([1, 2, 3], ['a', 'b', 'c']));    // [1, "a", 2, "b", 3, "c"]
