@@ -16,13 +16,14 @@
 // motorcycle => 2
 
 let vehicles = ['car', 'car', 'truck', 'car', 'SUV', 'truck',
-  'motorcycle', 'motorcycle', 'car', 'truck'];
+  'motorcycle', 'motorcycle', 'car', 'truck', 'suv', 'Suv'];
 
 function countOccurrences(array) {
   let occurrences = {};
 
   for (let index = 0; index < array.length; index += 1) {
-    let element = array[index];
+    // convert to lowercase for *** Further Exploration ***
+    let element = array[index].toLowerCase();
     occurrences[element] = occurrences[element] || 0;
     occurrences[element] += 1;
   }
@@ -38,3 +39,8 @@ function logOccurrences(occurrences) {
 }
 
 countOccurrences(vehicles);
+
+// *** Further Exploration ***
+
+// Try to solve the problem when words are case insensitive,
+// e.g. "suv" and "SUV" represent the same vehicle type.
