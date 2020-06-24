@@ -30,3 +30,6 @@ console.log(sequence(1));    // [1]
 // we cannot use forEach or map methods because we are starting with an
 // empty array, each of those method will not run any iteration becuause
 // length of array is zero.
+// How ever if we combine many array methods together we can do it:
+// Array(5).fill().map((_, index) => index + 1);
+// [...Array(5).keys()].map((_, index) => index + 1);
