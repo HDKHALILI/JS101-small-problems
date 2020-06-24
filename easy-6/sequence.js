@@ -24,3 +24,9 @@ function sequence(number) {
 console.log(sequence(5));    // [1, 2, 3, 4, 5]
 console.log(sequence(3));    // [1, 2, 3]
 console.log(sequence(1));    // [1]
+
+// *** Further Exploration ***
+// Can you use forEach or map in your solution? why or why not?
+// we cannot use forEach or map methods because we are starting with an
+// empty array, each of those method will not run any iteration becuause
+// length of array is zero.
