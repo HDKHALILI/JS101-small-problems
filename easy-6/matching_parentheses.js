@@ -18,11 +18,6 @@
 
 // Note that balanced pairs must each start with a (, not a ).
 
-// Algorithm:
-// - extract all the parentheses in the order that they appear
-// - divide them in pairs
-// - compare all items if they all are '()'
-
 function isBalanced(string) {
   let parentheses = 0;
   for (let index = 0; index < string.length; index += 1) {
