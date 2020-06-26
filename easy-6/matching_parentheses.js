@@ -45,3 +45,44 @@ console.log(isBalanced("((What)) (is this))?") === false);
 console.log(isBalanced("Hey!") === true);
 console.log(isBalanced(")Hey!(") === false);
 console.log(isBalanced("What ((is))) up(") === false);
+
+
+// *** Further Exploration ***
+
+//There are a few other characters that should be matching as well. Square
+// brackets and curly brackets normally come in pairs. Quotation marks(single
+// and double) also typically come in pairs and should be balanced. Can you
+// expand this function to take into account those characters?
+console.log('check more characters');
+{
+  function isBalanced(string, chars) {
+    let numOfChar = 0;
+    for (let index = 0; index < string.length; index += 1) {
+      if (string[index] === chars[0]) {
+        numOfChar += 1;
+      } else if (string[index] === chars[1]) {
+        numOfChar -= 1;
+      }
+
+      // to catch a starting ')'
+      if (numOfChar < 0) {
+        return false;
+      }
+    }
+
+    return numOfChar === 0;
+  }
+
+  console.log(isBalanced("What [is] this?", ['[', ']']) === true);
+  console.log(isBalanced("What 'is' this?", ["'", "'"]) === true);
+  console.log(isBalanced("What {is} this?", ['{', '}']) === true);
+  console.log(isBalanced("What is] this?", ['[', ']']) === false);
+  console.log(isBalanced("What [is this?", ['[', ']']) === false);
+  console.log(isBalanced("[[What] [is this]]?", ['[', ']']) === true);
+  console.log(isBalanced("{{What} {is this}}?", ['{', '}']) === true);
+  console.log(isBalanced("[[What]] [is this]]?", ['[', ']']) === false);
+  console.log(isBalanced("{{What}} {is this}}?", ['{', '}']) === false);
+  // console.log(isBalanced("Hey!") === true);
+  // console.log(isBalanced(")Hey!(") === false);
+  // console.log(isBalanced("What ((is))) up(") === false);
+}
