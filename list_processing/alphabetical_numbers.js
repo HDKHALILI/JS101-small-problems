@@ -25,23 +25,21 @@
 // - loop through the sorted array and find the index of each word
 //   from unsorted array
 
-let NUMBER_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven',
-  'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen',
-  'siztenn', 'seventeen', 'eighteen', 'nineteen'
+let NUMBER_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six',
+  'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen',
+  'fifteen', 'siztenn', 'seventeen', 'eighteen', 'nineteen'
 ];
 
-function sortWords(num1, num2) {
-  if (NUMBER_WORDS[num1] > NUMBER_WORDS[num2]) {
-    return 1;
-  } else if (NUMBER_WORDS[num1] < NUMBER_WORDS[num2]) {
-    return -1;
-  } else {
-    return 0;
-  }
-}
-
 function alphabeticNumberSort(numbers) {
-  return numbers.sort(sortWords);
+  return numbers.sort((num1, num2) => {
+    if (NUMBER_WORDS[num1] > NUMBER_WORDS[num2]) {
+      return 1;
+    } else if (NUMBER_WORDS[num1] < NUMBER_WORDS[num2]) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
 }
 
 console.log(alphabeticNumberSort(
