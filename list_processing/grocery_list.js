@@ -10,18 +10,24 @@
 // buyFruit([['apple', 3], ['orange', 1], ['banana', 2]]);
 // returns ["apple", "apple", "apple", "orange", "banana", "banana"]
 
-function buyFruit(array) {
+function buyFruit(fruitsLists) {
   let fruits = [];
-  array.forEach(subArr => {
-    let [fruit, quantity] = subArr;
-    let result = [];
-    for (let index = 0; index < quantity; index += 1) {
-      result.push(fruit);
-    }
-    fruits = fruits.concat(result);
+  fruitsLists.forEach(fruitAndQuantity => {
+    fruits = fruits.concat(repeat(fruitAndQuantity));
   });
 
   return fruits;
+}
+
+function repeat(fruitAndQuantity) {
+  let [fruit, quantity] = fruitAndQuantity;
+  let result = [];
+
+  for (let count = 0; count < quantity; count += 1) {
+    result.push(fruit);
+  }
+
+  return result;
 }
 
 console.log(buyFruit([['apple', 3], ['orange', 1], ['banana', 2]]));
