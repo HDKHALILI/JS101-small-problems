@@ -14,39 +14,40 @@
 // letterCaseCount('');            // { lowercase: 0, uppercase: 0, neither: 0 }
 
 function letterCaseCount(string) {
-  let result = {
-    lowercase: 0,
-    uppercase: 0,
-    niether: 0
+  let allUppercaseLetters = select(string, isUppercase);
+  let allLowercaseLetters = select(string, isLowercase);
+  let allNonLetters = select(string, isNoneLetter);
+
+  return {
+    lowercase: allLowercaseLetters.length,
+    uppercase: allUppercaseLetters.length,
+    neither: allNonLetters.length,
   };
-
-  for (let index = 0; index < string.length; index += 1) {
-    let char = string[index];
-    if (isUpperCase(char)) {
-      result.uppercase += 1;
-    } else if (isLowerCase(char)) {
-      result.lowercase += 1;
-    } else {
-      result.niether += 1;
-    }
-  }
-
-  return result;
 }
 
-
-function isUpperCase(char) {
-  return char >= 'A' && char <= 'Z';
+function select(string, callback) {
+  return string
+    .split("")
+    .filter((char) => callback(char))
+    .join("");
 }
 
-function isLowerCase(char) {
-  return char >= 'a' && char <= 'z';
+function isUppercase(char) {
+  return char >= "A" && char <= "Z";
 }
 
-console.log(letterCaseCount('abCdef 123'));  // { lowercase: 5, uppercase: 1, neither: 4 }
-console.log(letterCaseCount('AbCd +Ef'));    // { lowercase: 3, uppercase: 3, neither: 2 }
-console.log(letterCaseCount('123'));         // { lowercase: 0, uppercase: 0, neither: 3 }
-console.log(letterCaseCount(''));            // { lowercase: 0, uppercase: 0, neither: 0 }
+function isLowercase(char) {
+  return char >= "a" && char <= "z";
+}
+
+function isNoneLetter(char) {
+  return !isLowercase(char) && !isUppercase(char);
+}
+
+console.log(letterCaseCount("abCdef 123")); // { lowercase: 5, uppercase: 1, neither: 4 }
+console.log(letterCaseCount("AbCd +Ef")); // { lowercase: 3, uppercase: 3, neither: 2 }
+console.log(letterCaseCount("123")); // { lowercase: 0, uppercase: 0, neither: 3 }
+console.log(letterCaseCount("")); // { lowercase: 0, uppercase: 0, neither: 0 }
 
 // with regex
 function letterCaseCount2(string) {
@@ -57,6 +58,6 @@ function letterCaseCount2(string) {
   return {
     lowercase: lowercaseChars.length,
     uppercase: uppercaseChars.length,
-    neither: neitherChars.length
+    neither: neitherChars.length,
   };
 }
