@@ -35,11 +35,8 @@ function transactionsFor(id, transactions) {
 }
 
 function isItemAvailable(id, transactions) {
-  // select all transaction based on id
   let items = transactionsFor(id, transactions);
 
-  // sum all of the quantity of object with movement = 'in'
-  // sum all of the quantity of object with movement = 'out'
   let totalItemIn = 0;
   let totalItemOut = 0;
 
@@ -49,9 +46,8 @@ function isItemAvailable(id, transactions) {
     } else {
       totalItemOut += item.quantity;
     }
-  })
+  });
 
-  // check if totalItemIn is greater than totalItemOut
   return totalItemIn > totalItemOut;
 }
 
