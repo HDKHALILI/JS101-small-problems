@@ -46,7 +46,6 @@ function maxRotation(number) {
   for (let index = 0; index < numberString.length; index += 1) {
     let firstHalf = numberString.slice(0, index);
     let secondHalf = numberString.slice(index);
-    console.log(firstHalf);
     numberString = firstHalf + rotateString(secondHalf);
   }
 
@@ -62,3 +61,31 @@ console.log(maxRotation(3));               // 3
 console.log(maxRotation(35));              // 53
 console.log(maxRotation(105));             // 15 -- the leading zero gets dropped
 console.log(maxRotation(8703529146));      // 7321609845
+
+// Using the rotateRightmostDigits
+function rotateRightmostDigits(number, count) {
+  let numberString = String(number);
+  let firstHalf = numberString.slice(0, numberString.length - count);
+  let secondHalf = numberString.slice(numberString.length - count);
+  let rotatedString = firstHalf + rotateString(secondHalf);
+
+  return Number(rotatedString);
+}
+
+function maxRotation2(number) {
+  let numberOfDigits = String(number).length;
+
+  // why >= 2? -> slice(length - 2) will give us the last element
+  // rotating last element has no effect.
+  for (let count = numberOfDigits; count >= 2; count -= 1) {
+    number = rotateRightmostDigits(number, count);
+  }
+
+  return number;
+}
+
+console.log(maxRotation2(735291));          // 321579
+console.log(maxRotation2(3));               // 3
+console.log(maxRotation2(35));              // 53
+console.log(maxRotation2(105));             // 15 -- the leading zero gets dropped
+console.log(maxRotation2(8703529146));      // 7321609845
