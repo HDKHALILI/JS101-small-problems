@@ -87,6 +87,9 @@ minilang('-3 PUSH 5 SUB PRINT');
 minilang('6 PUSH');
 // (nothing is printed because the `program` argument has no `PRINT` commands)
 */
+const VALID_TOKENS = [
+  "PUSH", "ADD", "SUB", "MULT", "DIV", "MOD", "POP", "PRINT"
+];
 
 const operations = {
   ADD(register, stack) {
@@ -106,12 +109,19 @@ const operations = {
   },
   POP(_, stack) {
     return stack.pop();
+  },
+  ERROR(stack, token) {
+    if (stack.length === 0) {
+      return `EMPTY STACK: ${token} cannot be done on empty stack`;
+    }
+    return `INVALID TOKEN: ${token} is not a valid token`;
   }
 };
 
 function minilang(program) {
   let register = 0;
   let stack = [];
+  let error = '';
   program.split(" ").forEach(token => {
     if (Number.isInteger(Number(token))) {
       register = Number(token);
@@ -119,11 +129,13 @@ function minilang(program) {
       console.log(register);
     } else if (token === 'PUSH') {
       stack.push(register);
-    } else {
+    } else if (stack.length > 0 && VALID_TOKENS.includes(token)) {
       register = operations[token](register, stack);
+    } else {
+      error = operations.ERROR(stack, token);
+      console.error(error);
     }
   });
-
 }
 
 minilang('PRINT');
@@ -165,3 +177,5 @@ console.log('');
 
 minilang('6 PUSH');
 // (nothing is printed because the `program` argument has no `PRINT` commands)
+minilang('POP 6 PUSH MULT PRINT');
+minilang('POP 6 PUSH MUL PRINT');
