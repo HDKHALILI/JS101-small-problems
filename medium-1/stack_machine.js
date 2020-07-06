@@ -87,10 +87,6 @@ minilang('-3 PUSH 5 SUB PRINT');
 minilang('6 PUSH');
 // (nothing is printed because the `program` argument has no `PRINT` commands)
 */
-const VALID_TOKENS = [
-  "PUSH", "ADD", "SUB", "MULT", "DIV", "MOD", "POP", "PRINT"
-];
-
 const operations = {
   ADD(register, stack) {
     return register + stack.pop();
@@ -119,9 +115,11 @@ const operations = {
 };
 
 function minilang(program) {
+  const VALID_TOKENS = Object.keys(operations);
   let register = 0;
   let stack = [];
   let error = '';
+
   program.split(" ").forEach(token => {
     if (Number.isInteger(Number(token))) {
       register = Number(token);
@@ -136,6 +134,7 @@ function minilang(program) {
       console.error(error);
     }
   });
+
 }
 
 minilang('PRINT');
