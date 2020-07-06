@@ -89,29 +89,20 @@ minilang('6 PUSH');
 */
 
 const operations = {
-  PUSH(register, stack) {
-    stack.push(register);
-    return register;
-  },
   ADD(register, stack) {
-    register += stack.pop();
-    return register;
+    return register + stack.pop();
   },
   SUB(register, stack) {
-    register -= stack.pop();
-    return register;
+    return register - stack.pop();
   },
   MULT(register, stack) {
-    register *= stack.pop();
-    return register;
+    return register * stack.pop();
   },
   DIV(register, stack) {
-    register /= stack.pop();
-    return Math.floor(register);
+    return Math.floor(register / stack.pop());
   },
   MOD(register, stack) {
-    register %= stack.pop();
-    return register;
+    return Math.floor(register % stack.pop());
   },
   POP(_, stack) {
     return stack.pop();
@@ -126,6 +117,8 @@ function minilang(program) {
       register = Number(token);
     } else if (token === 'PRINT') {
       console.log(register);
+    } else if (token === 'PUSH') {
+      stack.push(register);
     } else {
       register = operations[token](register, stack);
     }
@@ -164,7 +157,6 @@ console.log('');
 
 minilang('4 PUSH PUSH 7 MOD MULT PRINT');
 // 12
-console.log('');
 console.log('');
 
 minilang('-3 PUSH 5 SUB PRINT');
