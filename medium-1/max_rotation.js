@@ -75,7 +75,7 @@ function rotateRightmostDigits(number, count) {
 function maxRotation2(number) {
   let numberOfDigits = String(number).length;
 
-  // why >= 2? -> slice(length - 2) will give us the last element
+  // why >= 2? -> slice(length - 1) will give us the last element
   // rotating last element has no effect.
   for (let count = numberOfDigits; count >= 2; count -= 1) {
     number = rotateRightmostDigits(number, count);
