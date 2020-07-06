@@ -16,25 +16,10 @@ let numberWords = [
 ];
 
 function wordToDigit(text) {
-  return text.split(' ').map(word => {
-    if (word.includes('.')) {
-      if (numberWords.includes(word.slice(0, word.length - 1))) {
-        return numberWords.indexOf(word.slice(0, word.length - 1)) + '.';
-      }
-    } else if (numberWords.includes(word)) {
-      return numberWords.indexOf(word);
-    }
-    return word;
-  })
-    .join(' ');
-}
-
-function onlyLetters(word) {
-  return word
-    .toLowerCase()
-    .split('')
-    .map(char => char >= 'a' && char <= 'z')
-    .join('');
+  return text.replace(/\w+/g, (word) => {
+    let query = word.toLowerCase();
+    return numberWords.includes(query) ? numberWords.indexOf(query) : word;
+  });
 }
 
 console.log(
