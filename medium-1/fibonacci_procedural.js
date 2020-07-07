@@ -25,16 +25,49 @@
 
 function fibonacci(nth) {
   let num1 = 1;
-  let num2 = 1;
-  let fib = 0;
+  let num2 = 1
+  let total = 0
   for (let index = 3; index <= nth; index += 1) {
-    fib = num1 + num2;
+    total = num1 + num2;
     num1 = num2;
-    num2 = fib;
+    num2 = total;
   }
-  return fib;
+  return total;
 }
 
 console.log(fibonacci(20));       // 6765
 console.log(fibonacci(50));       // 12586269025
 console.log(fibonacci(75));       // 2111485077978050
+
+
+// solution 2
+function fibonacci2(nth) {
+  let previous = 1;
+  let total = 1;
+  for (let index = 3; index <= nth; index += 1) {
+    // array destructuring
+    //                  we make an array of the variable values before update
+    // reassign the variables
+    [total, previous] = [total + previous, total];
+  }
+  return total;
+}
+
+console.log(fibonacci2(20));       // 6765
+console.log(fibonacci2(50));       // 12586269025
+console.log(fibonacci2(75));       // 2111485077978050
+
+// soluton 3
+function fibonacci3(nth) {
+  let previousTwo = [1, 1];
+
+  for (let counter = 3; counter <= nth; counter += 1) {
+    previousTwo = [previousTwo[1], previousTwo[0] + previousTwo[1]];
+  }
+
+  return previousTwo[1];
+}
+
+console.log(fibonacci3(20));       // 6765
+console.log(fibonacci3(50));       // 12586269025
+console.log(fibonacci3(75));       // 2111485077978050
