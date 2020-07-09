@@ -25,8 +25,8 @@
 
 function fibonacci(nth) {
   let num1 = 1;
-  let num2 = 1
-  let total = 0
+  let num2 = 1;
+  let total = 0;
   for (let index = 3; index <= nth; index += 1) {
     total = num1 + num2;
     num1 = num2;
