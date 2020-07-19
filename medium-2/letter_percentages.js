@@ -79,3 +79,19 @@ console.log(letterPercentages('AbCd +Ef'));
 
 console.log(letterPercentages('123'));
 // { lowercase: "0.00", uppercase: "0.00", neither: "100.00" }
+
+// Using regex
+function letterPercentages2(string) {
+  let count = string.length;
+
+  function percentage(regex) {
+    let matchingChars = string.match(regex) || [];
+    return ((matchingChars.length / count) * 100).toFixed(2);
+  }
+
+  return {
+    lowercase: percentage(/[a-z]/g),
+    uppercase: percentage(/[A-Z]/g),
+    neither: percentage(/[^a-z]/gi),
+  };
+}
