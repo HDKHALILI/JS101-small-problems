@@ -35,36 +35,38 @@
 
 // Code
 function featured(number) {
-  const MAX_POSSIBLE_FEATURED_NUMBER = 9876543201;
-  let nextFeaturedNumber = null;
-  for (let count = number + 1; count <= MAX_POSSIBLE_FEATURED_NUMBER; count += 1) {
-    let multipleOf7 = count % 7 === 0;
-    let isOdd = count % 2 === 1;
-    if (multipleOf7 && isOdd) {
-      if (noDuplicate(count)) {
-        nextFeaturedNumber = count;
-        break;
-      }
+  const MAX_FEATURED = 9876543201;
+  // why not 7?
+  //  featuredNumber is odd if we add odd to and odd number we will get even number
+  //  we want is the next odd, there for the next even and multiple of 7 is 14
+  const NEXT_MULTIPLE_OF_7 = 14;
+  let featuredNumber = oddAndMultipleOf7(number);
+  while (featuredNumber < MAX_FEATURED) {
+    if (noDuplicate(featuredNumber)) {
+      return featuredNumber;
     }
+    featuredNumber += NEXT_MULTIPLE_OF_7;
   }
-  let error = 'There is no possible number that fulfills those requirnments.'
-  return nextFeaturedNumber || error
+
+  return 'There is no possible number that fulfills those requirnments.';
+}
+
+function oddAndMultipleOf7(number) {
+  do {
+    number += 1;
+  } while (number % 2 === 0 || number % 7 !== 0);
+  console.log(number);
+  return number;
 }
 
 function noDuplicate(number) {
   let occurencies = {}
-  number = String(number);
-  for (let index = 0; index < number.length; index += 1) {
-    let char = number[index];
-    occurencies[char] = occurencies[char] || 0;
-    occurencies[char] += 1;
-  }
+  String(number).split('').forEach(num => {
+    occurencies[num] = occurencies[num] || 0;
+    occurencies[num] += 1;
+  });
 
-  if (Object.values(occurencies).some(value => value > 1)) {
-    return false;
-  }
-
-  return true;
+  return !Object.values(occurencies).some(value => value > 1);
 }
 
 console.log(featured(12));           // 21
