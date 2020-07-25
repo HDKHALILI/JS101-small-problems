@@ -48,10 +48,10 @@
 function longestSentence(text) {
   let sentences = splitInSentences(text);
   let longest = orderLongestToShortest(sentences)[0];
-  let wordCount = longest.split(' ').length;
+  let wordCount = longest.length;
 
-  console.log(longest);
-  console.log(`The longest sentence has ${wordCount} words`);
+  console.log(longest.join(' '), '\n');
+  console.log(`The longest sentence has ${wordCount} words`, '\n');
 }
 
 function splitInSentences(text) {
@@ -59,7 +59,8 @@ function splitInSentences(text) {
   let startIndex = 0;
   for (let index = 0; index < text.length; index += 1) {
     if ('.!?'.includes(text[index])) {
-      sentenceArray.push(text.slice(startIndex, index + 1));
+      let sentence = text.slice(startIndex, index + 1);
+      sentenceArray.push(sentence.split(' '));
       startIndex = index + 2;
     }
   }
@@ -67,7 +68,7 @@ function splitInSentences(text) {
 }
 
 function orderLongestToShortest(sentences) {
-  return sentences.sort((a, b) => b.split(' ').length - a.split(' ').length);
+  return sentences.sort((a, b) => b.length - a.length);
 }
 
 let longText =
