@@ -55,6 +55,11 @@ function transpose(matrix) {
   return newMatrix;
 }
 
+// Solution Using map
+function transpose2(matrix) {
+  return matrix.map((subArray, rowId) => subArray.map((_, colId) => matrix[colId][rowId]));
+}
+
 const matrix = [
   [1, 5, 8],
   [4, 7, 2],
@@ -63,5 +68,9 @@ const matrix = [
 
 let newMatrix = transpose(matrix);
 
+console.log(newMatrix);      // [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
+console.log(matrix);         // [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
+
+let newMatrix2 = transpose2(matrix);
 console.log(newMatrix);      // [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
 console.log(matrix);         // [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
