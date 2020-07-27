@@ -116,14 +116,15 @@ function randomWord(category) {
 }
 
 function wordAndPunctuation(word) {
+  let punctuations = [",", "'", "!", "."];
   let result = [];
-  if (word.includes(',') || word.includes('.')) {
-    let lastIndex = word.length - 1
-    result.push(word.slice(0, lastIndex), word[lastIndex]);
-  } else if (word.includes("'s")) {
-    let secondLastIndex = word.length - 2;
-    result.push(word.slice(0, secondLastIndex), word.slice(secondLastIndex));
-  } else {
+  word.split('').forEach((char, index) => {
+    if (punctuations.includes(char)) {
+      result.push(word.slice(0, index), word.slice(index));
+    }
+  });
+
+  if (result.length === 0) {
     result.push(word, '');
   }
 
@@ -132,9 +133,9 @@ function wordAndPunctuation(word) {
 
 let template1 = 'The $adjective brown $noun $adverb $verb the $adjective yellow $noun, who $adverb $verb his $noun and looks around.';
 
-let template2 = "The $noun $verb the $noun's $noun."
 console.log(madlibs(template1));
 console.log(madlibs(template1));
 
+let template2 = "The $noun $verb the $noun's $noun."
 console.log(madlibs(template2));
 console.log(madlibs(template2));
