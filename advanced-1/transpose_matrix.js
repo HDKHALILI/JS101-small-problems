@@ -45,8 +45,11 @@ let matrix = [
 
 function transpose(matrix) {
   let newMatrix = [];
-  for (let index = 0; index < matrix.length; index += 1) {
-    newMatrix.push([matrix[0][index], matrix[1][index], matrix[2][index]]);
+  for (let outerIndex = 0; outerIndex < matrix.length; outerIndex += 1) {
+    newMatrix.push([]);
+    for (let innerIndex = 0; innerIndex < 3; innerIndex += 1) {
+      newMatrix[outerIndex].push(matrix[innerIndex][outerIndex]);
+    }
   }
 
   return newMatrix;
