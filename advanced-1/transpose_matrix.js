@@ -83,6 +83,8 @@ function transposeInPlace(matrix) {
   for (let rowIndex = 0; rowIndex < matrix.length; rowIndex += 1) {
     let currentRow = matrix[rowIndex];
     for (let colIndex = 0; colIndex < currentRow.length; colIndex += 1) {
+      // rowIndex allows us to hold current array and change
+      // its elements value before moving to the next array
       matrix[rowIndex][colIndex] = arrayCopy[colIndex][rowIndex];
     }
   }
