@@ -68,9 +68,35 @@ const matrix = [
 
 let newMatrix = transpose(matrix);
 
-console.log(newMatrix);      // [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
-console.log(matrix);         // [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
+// console.log(newMatrix);      // [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
+// console.log(matrix);         // [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
 
-let newMatrix2 = transpose2(matrix);
-console.log(newMatrix);      // [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
-console.log(matrix);         // [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
+// let newMatrix2 = transpose2(matrix);
+// console.log(newMatrix2);      // [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
+// console.log(matrix);         // [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
+
+// *** Further Exploration ***
+function transposeInPlace(matrix) {
+  let arrayJSON = JSON.stringify(matrix);
+  let arrayCopy = JSON.parse(arrayJSON);
+
+  for (let rowIndex = 0; rowIndex < matrix.length; rowIndex += 1) {
+    let currentRow = matrix[rowIndex];
+    for (let colIndex = 0; colIndex < currentRow.length; colIndex += 1) {
+      matrix[rowIndex][colIndex] = arrayCopy[colIndex][rowIndex];
+    }
+  }
+
+  return matrix;
+}
+
+const matrix2 = [
+  [1, 5, 8],
+  [4, 7, 2],
+  [3, 9, 6]
+];
+
+let newMatrix3 = transposeInPlace(matrix2);
+
+console.log(newMatrix3);      // [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
+console.log(matrix2);         // [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
