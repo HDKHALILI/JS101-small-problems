@@ -61,7 +61,28 @@ function merge(array1, array2) {
   return newArray.concat(copy1.length === 0 ? copy2 : copy1);
 }
 
-console.log(merge([1, 5, 9], [2, 6, 8]));      // [1, 2, 5, 6, 8, 9]
-console.log(merge([1, 1, 3], [2, 2]));         // [1, 1, 2, 2, 3]
-console.log(merge([], [1, 4, 5]));             // [1, 4, 5]
-console.log(merge([1, 4, 5], []));             // [1, 4, 5]
+// solution 2 using min function
+function merge2(array1, array2) {
+  const resultArray = [];
+  const newArray = [...array1, ...array2];
+
+  while (newArray.length > 0) {
+    let min = Math.min(...newArray);
+    let index = newArray.indexOf(min);
+    resultArray.push(min);
+    newArray.splice(index, 1);
+  }
+
+  return resultArray;
+}
+
+// console.log(merge([1, 5, 9], [2, 6, 8]));      // [1, 2, 5, 6, 8, 9]
+// console.log(merge([1, 1, 3], [2, 2]));         // [1, 1, 2, 2, 3]
+// console.log(merge([], [1, 4, 5]));             // [1, 4, 5]
+// console.log(merge([1, 4, 5], []));             // [1, 4, 5]
+
+console.log('---------');
+console.log(merge2([1, 5, 9], [2, 6, 8]));      // [1, 2, 5, 6, 8, 9]
+console.log(merge2([1, 1, 3], [2, 2]));         // [1, 1, 2, 2, 3]
+console.log(merge2([], [1, 4, 5]));             // [1, 4, 5]
+console.log(merge2([1, 4, 5], []));             // [1, 4, 5]
