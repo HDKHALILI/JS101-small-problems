@@ -55,13 +55,12 @@
 // - repeat this until each array has one element.
 
 // Code
-// - set result = []
 // - set center = array.length / 2
 // - set left = slice array from 0, to center
 // - set right = slice array from center
 // - if array length is 1
 //   - return array
-//  - call function with left and right as argument
+//  - return calling the function recursively with left and right as argument
 
 function mergeSort(array) {
   if (array.length === 1) {
@@ -73,7 +72,6 @@ function mergeSort(array) {
   let right = array.slice(center);
   return merge(mergeSort(left), mergeSort(right));
 }
-
 
 function merge(array1, array2) {
   const newArray = [];
@@ -91,6 +89,7 @@ function merge(array1, array2) {
   // if one is empty but the other is not
   return newArray.concat(copy1.length === 0 ? copy2 : copy1);
 }
+
 console.log(mergeSort([9, 5, 7, 1]));           // [1, 5, 7, 9]
 console.log(mergeSort([5, 3]));
 console.info(mergeSort([6, 2, 7, 1, 4]));        // [1, 2, 4, 6, 7]
