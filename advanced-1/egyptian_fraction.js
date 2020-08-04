@@ -39,6 +39,7 @@ function egyptian(target) {
 
     denominator += 1;
   }
+  console.log(denominators);
   return denominators;
 }
 
@@ -48,7 +49,7 @@ function unegyptian(denominator) {
   );
 }
 
-console.log(egyptian(Fraction(127, 130))); // -> [2, 3, 12]
+console.log(egyptian(Fraction(127, 130))); // -> [ 2, 3, 7, 1365 ]
 console.log(egyptian(Fraction(11, 12))); // -> [2, 3, 12]
 console.log(egyptian(Fraction(2, 1))); // -> [1, 2, 3, 6]
 console.log(egyptian(Fraction(137, 60))); // -> [1, 2, 3, 4, 5]
